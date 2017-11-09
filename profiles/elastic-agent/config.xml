@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cruise xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="cruise-config.xsd" schemaVersion="97">
+    <server artifactsdir="artifacts" agentAutoRegisterKey="5714192c-185c-456a-b00e-a2a5a696ceaa" webhookSecret="5cea06cb-768e-4adb-9828-c45898012f9f" commandRepositoryLocation="default" serverId="461c1d63-d3db-4850-ae5d-34905cfd3c71">
+        <elastic>
+            <profiles>
+                <profile id="test" pluginId="cd.go.contrib.elastic-agent.docker">
+                    <property>
+                        <key>Image</key>
+                        <value>gocd/gocd-agent-alpine-3.6:v17.11.0</value>
+                    </property>
+                    <property>
+                        <key>Command</key>
+                        <value />
+                    </property>
+                    <property>
+                        <key>Environment</key>
+                        <value />
+                    </property>
+                    <property>
+                        <key>Hosts</key>
+                        <value />
+                    </property>
+                </profile>
+            </profiles>
+        </elastic>
+    </server>
+    <pipelines group="defaultGroup">
+        <pipeline name="test">
+            <materials>
+                <git url="https://github.com/eugenmayer/docker-image-java" shallowClone="true" />
+            </materials>
+            <stage name="defaultStage">
+                <jobs>
+                    <job name="defaultJob" elasticProfileId="test">
+                        <tasks>
+                            <exec command="/bin/sh">
+                                <arg>ls</arg>
+                                <arg>env</arg>
+                            </exec>
+                        </tasks>
+                    </job>
+                </jobs>
+            </stage>
+        </pipeline>
+    </pipelines>
+</cruise>

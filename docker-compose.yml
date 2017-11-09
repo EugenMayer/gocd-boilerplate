@@ -8,9 +8,14 @@ services:
       - docker-engine
     volumes:
       - gocd-server-data:/godata
+      - ./profiles/elastic-agent/config.xml:/tmp/config.xml
+      - ./profiles/elastic-agent/elastic-agent.sh:/docker-entrypoint.d/elastic-agent.sh
     environment:
       - AGENT_KEY=${GOCD_AGENT_KEY}
+      - GOCD_ADMIN_USER=${GOCD_ADMIN_USER}
+      - GOCD_ADMIN_PW=${GOCD_ADMIN_PW}
       - GOCD_PLUGIN_INSTALL_docker-elastic-agents=https://github.com/gocd-contrib/docker-elastic-agents/releases/download/v0.8.0/docker-elastic-agents-0.8.0.jar
+      #- GOCD_PLUGIN_INSTALL_yaml-config-plugin=https://github.com/tomzo/gocd-yaml-config-plugin/releases/download/0.6.0/yaml-config-plugin-0.6.0.jar
     ports:
       - 8153:8153
       - 8154:8154

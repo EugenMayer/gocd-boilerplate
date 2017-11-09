@@ -1,7 +1,9 @@
 version: '2'
 services:
   gocd-server:
-    image: gocd/gocd-server:v17.11.0
+    # using the own build of https://github.com/gocd/docker-gocd-server until the features are merged
+    # image: gocd/gocd-server:v17.11.0
+    image: eugenmayer/gocd-server:v17.11.0
     depends_on:
       - docker-engine
     volumes:

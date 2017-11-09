@@ -34,6 +34,7 @@
                     <job name="defaultJob" elasticProfileId="test">
                         <tasks>
                             <exec command="/bin/sh">
+                                <arg>-c</arg>
                                 <arg>ls</arg>
                                 <arg>env</arg>
                             </exec>

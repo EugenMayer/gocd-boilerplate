@@ -59,7 +59,7 @@ You can have as many elastic-agents profiles as you like, so as many job specifi
 
 Save.
 
-1. Now create a pipeline and add a `sh` job which does `ls && and` and save
+1. Now create a pipeline and add a `sh` job which does `-c ls && env` and save
 1. edit the job again and go to job settings, should be http://localhost:8153/go/admin/pipelines/test/stages/defaultStage/job/defaultJob/settings
 1. under `Elastic Profile Id` select `test`
 

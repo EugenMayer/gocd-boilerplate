@@ -44,6 +44,10 @@ If you run docker-toolbox be sure to replace http://localhost with you `docker-m
 
 Save the configuration. 
 
+You can not run the already existing pipeline and then read on below
+
+### This has already been done by importing a config.xml for you, but for the reference
+
 Now we are going to create a Elastic-Agent Image which can be used in jobs.
 Jobs cannot define images directly, they rather pick a elastic-agent-profile-id which then is a specific docker-image to run in.
 You can have as many elastic-agents profiles as you like, so as many job specific docker-images as you like
@@ -54,6 +58,10 @@ You can have as many elastic-agents profiles as you like, so as many job specifi
 1. Set `Docker Image` to `gocd/gocd-agent-alpine-3.6:v17.11.0` (you can have anything in here, see the notes below)
 
 Save.
+
+1. Now create a pipeline and add a `sh` job which does `ls && and` and save
+1. edit the job again and go to job settings, should be http://localhost:8153/go/admin/pipelines/test/stages/defaultStage/job/defaultJob/settings
+1. under `Elastic Profile Id` select `test`
 
 You should already have a pipeline inside your pipilines referencing this image `test` in its job, which will just make an `ls && env`
 Run it :)

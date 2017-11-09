@@ -1,0 +1,29 @@
+version: '2'
+services:
+  gocd-server:
+    image: gocd/gocd-server:v17.11.0
+    depends_on:
+      - docker-engine
+    volumes:
+      - gocd-server-data:/godata
+    environment:
+      - AGENT_KEY=${GOCD_AGENT_KEY}
+      - GOCD_PLUGIN_INSTALL_docker-elastic-agents=https://github.com/gocd-contrib/docker-elastic-agents/releases/download/v0.8.0/docker-elastic-agents-0.8.0.jar
+    ports:
+      - 8153:8153
+      - 8154:8154
+  docker-engine:
+    privileged: true
+    image: docker:stable-dind
+  docker-client:
+    image: docker:edge
+    command: version
+    depends_on:
+      - docker-engine
+    links:
+      - docker-engine:docker
+    environment:
+      - DOCKER_HOST=docker-engine:2375
+volumes:
+  gocd-server-data:
+    driver: local

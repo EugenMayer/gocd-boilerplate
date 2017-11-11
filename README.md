@@ -39,7 +39,7 @@ If you run docker-toolbox be sure to replace http://localhost with you `docker-m
 1. Set `Go Server URL` to `https://gocd-server:8154` This can be your public domain you access GoCD in production
 1. Set `Agent auto-register Timeout (in minutes)*` to `1`
 1. Set `Maximum docker containers to run at any given point in time:*` to `5` for now ( you can go bigger anytime)
-1. Set `Docker URI:* ` to `docker-engine:2375` - this is the tcp socket of the `docker-engine` service we started together with the `gocd-server` - have a look at the docker-compose.yml
+1. Set `Docker URI:* ` to `http://docker-engine:2375` - this is the tcp socket of the `docker-engine` service we started together with the `gocd-server` - have a look at the docker-compose.yml ( http:// is needed, even if tcp:// would to be expected, see https://github.com/gocd-contrib/docker-elastic-agents/issues/39
 1. Set `Use Private Registry` to `false` (for now)
 
 Save the configuration. 
